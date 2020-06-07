@@ -55,4 +55,4 @@ def top_words(source, number):
                 ht.put(w, count)
 
 
-print(top_words("alice.txt", 10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE
+# print(top_words("alice.txt", 10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE
