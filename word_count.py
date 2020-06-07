@@ -44,13 +44,15 @@ def top_words(source, number):
 
     ht = HashMap(2500,hash_function_2)
 
+    count = 1
+
     # This block of code will read a file one word as a time and
     # put the word in `w`. It should be left as starter code.
     with open(source) as f:
         for line in f:
             words = rgx.findall(line)
             for w in words:
-                # FIXME: Complete this function
+                ht.put(w, count)
 
 
-# print(top_words("alice.txt",10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE
+print(top_words("alice.txt", 10))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE

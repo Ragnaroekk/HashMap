@@ -169,3 +169,19 @@ for capacity in range(111, 1000, 117):
         result = result and m.contains_key(str(key))
         result = result and not m.contains_key(str(key + 1))
     print(capacity, result, m.size, m.capacity, round(m.table_load(), 2))
+
+
+print("\n\n********   RESIZE_TABLE()   ********")
+print("--- EXAMPLE 3 ---")
+m = HashMap(10, hash_function_2)
+keys = [i for i in range(1, 100, 13)]
+for key in keys:
+    m.put(str(key), key * 42)
+print(m.size, m.capacity)
+for capacity in range(11, 100, 17):
+    m.resize_table(capacity)
+    result = True
+    for key in keys:
+        result = result and m.contains_key(str(key))
+        result = result and not m.contains_key(str(key + 1))
+    print(capacity, result, m.size, m.capacity, round(m.table_load(), 2))

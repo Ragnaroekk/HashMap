@@ -82,14 +82,14 @@ class LinkedList:
 
 
 def hash_function_1(key):
-    hash = 1234
+    hash = 0
     for i in key:
         hash = hash + ord(i)
     return hash
 
 
 def hash_function_2(key):
-    hash = 7919
+    hash = 0
     index = 0
     for i in key:
         hash = hash + (index + 1) * ord(i)
@@ -164,8 +164,10 @@ class HashMap:
         Args:
             capacity: the new number of buckets.
         """
-        buckets = self._buckets
-        self.capacity = capacity
+        buckets = self._buckets  # store the old list
+        self.capacity = capacity  # update to the new capacity
+        self._buckets = []  # empty the list
+        self.size = 0
 
         # create our new table with empty nodes
         for i in range(capacity):
@@ -233,7 +235,7 @@ class HashMap:
         """
         total = 0
         for bucket in self._buckets:
-            if bucket.head == None:
+            if bucket.head is None:
                 total += 1
         return total
 
