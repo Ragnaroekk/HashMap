@@ -52,6 +52,49 @@ def top_words(source, number):
         for line in f:
             words = rgx.findall(line)
             for w in words:
-                ht.put(w, count)
+                if ht.contains_key(w.lower()):
+                    value = ht.get(w.lower())
+                    value += 1
+                    ht.put(w.lower(), value)
+                else:
+                    ht.put(w.lower(), 1)
+
+    result = sort_function(ht, number)
+
+    return result
+
+def sort_function(hash_map, number):
+    """
+    Sorts the hash map by most common words and returns a tuple of the
+    top x most common where x is the number passed in.
+    With help from https://stackoverflow.com/
+    :param hash_map: Hashmap that has the data to sort
+    :param number: number of top results to return
+    :return: A tuple of the most common number of items
+    """
+    temp_list = []
+
+    # per assignment guidelines:
+    # "Variables in the HashMap()class are not private.You are allowed to access and change their values directly.
+    # You do not need to write any getter or setter methods for the HashMap() class."
+    # also, we are not to change the init method, but we are accessing a private variable here
+
+    for linked_list in hash_map._buckets:
+        if linked_list.head is not None:
+            curr = linked_list.head
+            while curr is not None:
+                node = (curr.key, curr.value)
+                temp_list.append(node)
+                curr = curr.next
+    temp_list.sort(key=lambda tup: tup[1])
+    temp_list.reverse()
+
+    result = []
+    for i in range(number):
+        result.append(temp_list[i])
+
+    return result
 
 
+
+# print(top_words("test.txt", 5))  # COMMENT THIS OUT WHEN SUBMITTING TO GRADESCOPE

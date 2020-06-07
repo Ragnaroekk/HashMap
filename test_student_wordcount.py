@@ -6,7 +6,6 @@
 
 """Change this import depending on spellchecker file name"""
 from word_count import top_words
-from gradescope_utils.autograder_utils.decorators import weight
 import unittest
 import re
 
@@ -50,7 +49,6 @@ def get_top_words_standard(source, number):
 
 # Class for testing the student spell checker, checks against the standardized Python Dictionary
 class TestStudentWords(unittest.TestCase):
-    @weight(15)
     def test_top_words_1(self):
         """Tests that the top word returned matches the standard results"""
         num_of_results = 1
@@ -65,7 +63,6 @@ class TestStudentWords(unittest.TestCase):
         # check that the student hash map returns the exact list as the python dict
         self.assertTrue(words == standard_words)
 
-    @weight(6)
     def test_top_words_3(self):
         """Tests that the top three words returned matches the standard results"""
         num_of_results = 3
@@ -80,7 +77,6 @@ class TestStudentWords(unittest.TestCase):
         # check that the student hash map returns the exact list as the python dict
         self.assertTrue(words == standard_words)
 
-    @weight(9)
     def test_top_words_5(self):
         """Tests that the top five words returned matches the standard results"""
         num_of_results = 5
@@ -111,55 +107,46 @@ class TestStudentWordCount(unittest.TestCase):
         for key, value in self.results:
             self.counts.append(value)
 
-    @weight(2)
     def test_top_word_count_1(self):
         """Test that the top word returned matches the standard count"""
         # check that the student hash map returns the exact list as the python dict
         self.assertTrue(self.counts[0] == self.standard_counts[0])
 
-    @weight(1)
     def test_top_word_count_3_a(self):
         """Test that the 1st place of the top 3 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 3)
         self.assertTrue(self.counts[0] == self.standard_counts[0])
 
-    @weight(1)
     def test_top_word_count_3_b(self):
         """Test that the 2nd place of the top 3 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 3)
         self.assertTrue(self.counts[1] == self.standard_counts[1])
 
-    @weight(1)
     def test_top_word_count_3_b(self):
         """Test that the 3rd place of the top 3 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 3)
         self.assertTrue(self.counts[2] == self.standard_counts[2])
 
-    @weight(1)
     def test_top_word_count_5_a(self):
         """Test that the 1st place of the top 5 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 5)
         self.assertTrue(self.counts[0] == self.standard_counts[0])
 
-    @weight(1)
     def test_top_word_count_5_b(self):
         """Test that the 2nd place of the top 5 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 5)
         self.assertTrue(self.counts[1] == self.standard_counts[1])
 
-    @weight(1)
     def test_top_word_count_5_c(self):
         """Test that the 3rd place of the top 5 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 5)
         self.assertTrue(self.counts[2] == self.standard_counts[2])
 
-    @weight(1)
     def test_top_word_count_5_d(self):
         """Test that the 4th place of the top 5 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 5)
         self.assertTrue(self.counts[3] == self.standard_counts[3])
 
-    @weight(1)
     def test_top_word_count_5_e(self):
         """Test that the 5th place of the top 5 returned matches the standard count"""
         self.assertTrue(len(self.counts) >= 5)
