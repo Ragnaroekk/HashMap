@@ -16,6 +16,7 @@ modify it for your assignment submission.
 """
 rgx = re.compile("(\w[\w']*\w|\w)")
 
+
 def hash_function_2(key):
     """
     This is a hash function that can be used for the hashmap.
@@ -27,6 +28,7 @@ def hash_function_2(key):
         hash = hash + (index + 1) * ord(i)
         index = index + 1
     return hash
+
 
 def top_words(source, number):
     """
@@ -52,13 +54,16 @@ def top_words(source, number):
         for line in f:
             words = rgx.findall(line)
             for w in words:
+                # check if we have found the key before and update the count
                 if ht.contains_key(w.lower()):
                     value = ht.get(w.lower())
                     value += 1
                     ht.put(w.lower(), value)
                 else:
+                    # add the new key
                     ht.put(w.lower(), 1)
 
+    # grab the top x results
     result = sort_function(ht, number)
 
     return result
@@ -79,16 +84,21 @@ def sort_function(hash_map, number):
     # You do not need to write any getter or setter methods for the HashMap() class."
     # also, we are not to change the init method, but we are accessing a private variable here
 
+    # check each bucket to see if it is empty
     for linked_list in hash_map._buckets:
+        # not empty, look through the linked list
         if linked_list.head is not None:
             curr = linked_list.head
+            # check each node and add it to our temp list
             while curr is not None:
                 node = (curr.key, curr.value)
                 temp_list.append(node)
                 curr = curr.next
+    # thanks to https://stackoverflow.com/ for the inline lambda function idea
     temp_list.sort(key=lambda tup: tup[1])
     temp_list.reverse()
 
+    # store the requested number of top results
     result = []
     for i in range(number):
         result.append(temp_list[i])

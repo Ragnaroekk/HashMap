@@ -2,7 +2,7 @@
 # ===================================================
 # Implement a hash map with chaining
 # ===================================================
-# Layout and design from CS 261 skeleton code
+# Layout and design from CS 261 skeleton code, along with linked list and SLNode
 # Author: Ray Franklin
 # Date: 06/06/2020
 # with help from https://stackabuse.com/
@@ -104,7 +104,6 @@ class HashMap:
         capacity: the total number of buckets to be created in the hash table
         function: the hash function to use for hashing values
     """
-
     def __init__(self, capacity, function):
         self._buckets = []
         for i in range(capacity):
@@ -167,7 +166,7 @@ class HashMap:
         buckets = self._buckets  # store the old list
         self.capacity = capacity  # update to the new capacity
         self._buckets = []  # empty the list
-        self.size = 0
+        self.size = 0  # reset the size
 
         # create our new table with empty nodes
         for i in range(capacity):
@@ -195,6 +194,7 @@ class HashMap:
             value: the value associated with the entry
         """
         current_node = self.get_node(key)
+
         # key already exists, update its value
         if current_node:
             current_node.value = value
@@ -251,7 +251,6 @@ class HashMap:
         """
         Prints all the links in each of the buckets in the table.
         """
-
         out = ""
         index = 0
         for bucket in self._buckets:
